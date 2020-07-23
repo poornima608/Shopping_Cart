@@ -8,7 +8,6 @@ node {
          }
          stage('Build'){
                      bat "npm run ng -- build --prod"
-                     bat "cd Shopping_cart"
          }
          stage('Deploy'){
                       bat "pm2 restart all"
