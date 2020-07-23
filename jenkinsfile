@@ -7,7 +7,7 @@ node {
                       bat "npm install"
          }
          stage('Build'){
-                     bat "ng build --no-aot --no-build-optimizer --base-href ./"
+                     bat "ng build --prod"
                      bat "cd Shopping_cart"
          }
          stage('Deploy'){
