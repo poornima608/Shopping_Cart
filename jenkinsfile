@@ -1,16 +1,19 @@
-pipeline {
-    agent any
-
-    stages {
-        stage('Build') {
-            steps {
-                nodejs(nodeJSInstallationName: 'nodejs', configId: '<config-file-provider-id>') {
-                    sh 'npm config ls'
-                }
-            }
-        }
-    }
-}
+node {
+         stage ('Checkout SCM'){
+                    git branch: 'master',url: 'https://github.com/Akanshagiriya/Shopping_Cart.git'
+         }
+         
+         stage('Install node modules'){
+                      sh "npm install"
+         }
+         stage('Build'){
+                     sh "ng build --no-aot --no-build-optimizer --base-href ./"
+                     sh "cp -R C:\Program Files (x86)\Jenkins\workspace\Shopping_cart"
+         }
+         stage('Deploy'){
+                      sh "pm2 restart all"
+         }
+     }
 
 
 
