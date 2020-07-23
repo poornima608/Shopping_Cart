@@ -8,7 +8,7 @@ node {
          }
          stage('Build'){
                      sh "ng build --no-aot --no-build-optimizer --base-href ./"
-                     sh "cp -R C:\Program Files (x86)\Jenkins\workspace\Shopping_cart"
+                     sh "cd Shopping_cart"
          }
          stage('Deploy'){
                       sh "pm2 restart all"
