@@ -4,14 +4,14 @@ node {
          }
          
          stage('Install node modules'){
-                      sh "npm install"
+                      bat "npm install"
          }
          stage('Build'){
-                     sh "ng build --no-aot --no-build-optimizer --base-href ./"
-                     sh "cd Shopping_cart"
+                     bat "ng build --no-aot --no-build-optimizer --base-href ./"
+                     bat "cd Shopping_cart"
          }
          stage('Deploy'){
-                      sh "pm2 restart all"
+                      bat "pm2 restart all"
          }
      }
 
