@@ -5,21 +5,21 @@ node(){
         
     stage('Install dependencies') {
         nodejs('nodejs') {
-            sh 'npm install'
+            bat 'npm install'
             echo "Modules installed"
         }
         
     }
     stage('Build') {
         nodejs('nodejs') {
-            sh 'ng build --prod'
+            bat 'ng build --prod'
             echo "Build completed"
         }
         
     }
 
     stage('Package Build') {
-        sh "tar -zcvf bundle.tar.gz dist/shopping-cart/"
+        bat "tar -zcvf bundle.tar.gz dist/shopping-cart/"
     }
 
     stage('Artifacts Creation') {
@@ -49,7 +49,7 @@ node('awsnode') {
     echo 'Artifacts copied'
 
     echo 'Copy'
-    sh "yes | sudo cp -R bundle.tar.gz /var/www/html && cd /var/www/html && sudo tar -xvf bundle.tar.gz"
+    bat "yes | sudo cp -R bundle.tar.gz /var/www/html && cd /var/www/html && sudo tar -xvf bundle.tar.gz"
     echo 'Copy completed'
 }
 
