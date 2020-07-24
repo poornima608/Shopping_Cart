@@ -49,7 +49,7 @@ node('awsnode') {
     echo 'Artifacts copied'
 
     echo 'Copy'
-    bat "yes | sudo cp -R bundle.tar.gz /var/www/html && cd /var/www/html && sudo tar -xvf bundle.tar.gz"
+    bat "yes | sudo cp -R bundle.tar.gz /var/www/html && cd /var/www/html && sudo 7z -xvf bundle.tar.gz"
     echo 'Copy completed'
 }
 
