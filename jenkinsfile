@@ -5,27 +5,26 @@ node(){
         
     stage('Install dependencies') {
         nodejs('nodejs') {
-            bat 'npm install'
-            echo "Modules installed"
+            powershell 'npm install'
+            echo 'Modules installed'
         }
         
     }
     stage('Build') {
         nodejs('nodejs') {
-            bat 'npm run ng -- build --prod'
-            echo "Build completed"
+            powershell 'npm run ng -- build --prod'
+            echo 'Build completed'
         }
         
     }
 
     stage('Package Build') {
-        bat "7z -zcvf bundle.tar.gz dist/shopping-cart/"
-    }
-
+          powershell '7z -zcvf bundle.tar.gz dist/shopping-cart/'
+   }
     stage('Artifacts Creation') {
         fingerprint 'bundle.tar.gz'
         archiveArtifacts 'bundle.tar.gz'
-        echo "Artifacts created"
+        echo 'Artifacts created'
     }
 
     stage('Stash changes') {
@@ -49,7 +48,7 @@ node('aws_node') {
     echo 'Artifacts copied'
 
     echo 'Copy'
-    bat "yes | sudo cp -R bundle.tar.gz /var/www/html && cd /var/www/html && sudo 7z -xvf bundle.tar.gz"
+    powershell "yes | sudo cp -R bundle.tar.gz /var/www/html && cd /var/www/html && sudo 7z -xvf bundle.tar.gz"
     echo 'Copy completed'
 }
 
