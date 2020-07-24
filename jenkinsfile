@@ -1,6 +1,6 @@
 node(){
     stage('Cloning Git') {
-        checkout scm
+         git branch: 'master',url: 'https://github.com/Akanshagiriya/Shopping_Cart.git'
     }
         
     stage('Install dependencies') {
