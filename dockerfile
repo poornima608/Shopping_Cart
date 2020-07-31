@@ -9,6 +9,4 @@ COPY . .
 RUN npm install
 RUN npm run build --prod
 
-FROM nginx:1.13.3-alpine
-COPY dist/Angular-Shopping-Cart
- /usr/share/nginx/html
+CMD ["npm", "start"]
