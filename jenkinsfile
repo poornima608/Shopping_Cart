@@ -1,9 +1,9 @@
 pipeline {
-   environment {
+  /* environment {
     registry = "akanshagiriya/shopping-cart"
     registryCredential = 'docker_hub_akanshagiriya'
     dockerImage = ''
-  }
+  }*/
   agent any
    stages{
      stage('Cloning Git') {
