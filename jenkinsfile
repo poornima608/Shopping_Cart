@@ -1,52 +1,41 @@
-pipeline {
+node() {
     environment {
     registry = "akanshagiriya/shopping-cart"
     registryCredential = 'docker_hub_akanshagiriya'
     dockerImage = ''
   }
-  agent any
-   stages{
     stage ('Build Install dependencies') {
-    steps{
-         nodejs('nodejs'){
+        nodejs('nodejs'){
         echo "Modules installed"
         sh "npm install"
-        }
       }
     }
     stage ('Build completed') {
-      steps{
         nodejs('nodejs'){
         echo "Build completed"
         sh "npm run ng -- build --prod"
-        }
       }
     }
     stage ('Build Docker Image') {
-      steps{
         echo "Building Docker Image"
           script {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
-      }
     }
     stage ('Push Docker Image') {
-      steps{
         echo "Pushing Docker Image"
          script {
               docker.withRegistry( '', registryCredential ) {
               dockerImage.push()
               dockerImage.push('latest')
-          }
         }
       }
     }
     stage ('Deploy to Dev') {
-      steps{
         echo "Deploying to Dev Environment"
          sh "docker rm -f shoppingcart || true"
          sh "docker run -d --name=shoppingcart -p 8081:8080 akanshagiriya/shopping-cart"
       }
     }
   }
-}
+
