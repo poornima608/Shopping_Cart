@@ -12,7 +12,7 @@ pipeline {
          }
       }
     stage ('Build Install dependencies') {
-      steps{
+      nodejs('nodejs') {
         echo "Modules installed"
         sh "npm install"
       }
