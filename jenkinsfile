@@ -8,14 +8,18 @@ pipeline {
    stages{
     stage ('Build Install dependencies') {
     steps{
+         nodejs('nodejs'){
         echo "Modules installed"
         sh "npm install"
+        }
       }
     }
     stage ('Build completed') {
       steps{
+        nodejs('nodejs'){
         echo "Build completed"
         sh "npm run ng -- build --prod"
+        }
       }
     }
     stage ('Build Docker Image') {
