@@ -1,30 +1,21 @@
 pipeline {
-  /* environment {
+    environment {
     registry = "akanshagiriya/shopping-cart"
     registryCredential = 'docker_hub_akanshagiriya'
     dockerImage = ''
-  }*/
+  }
   agent any
    stages{
-     stage('Cloning Git') {
-        steps{
-         git branch: 'master',url: 'https://github.com/Akanshagiriya/Shopping_Cart.git'
-         }
-      }
     stage ('Build Install dependencies') {
     steps{
-      nodejs('nodejs') {
         echo "Modules installed"
         sh "npm install"
-      }
       }
     }
     stage ('Build completed') {
       steps{
-       nodejs('nodejs')
         echo "Build completed"
         sh "npm run ng -- build --prod"
-        }
       }
     }
     stage ('Build Docker Image') {
@@ -54,4 +45,4 @@ pipeline {
       }
     }
   }
-
+}
