@@ -37,5 +37,5 @@ node() {
          sh "docker run -d --name=shoppingcart -p 8081:8080 akanshagiriya/shopping-cart"
       }
     }
-  }
+  
 
