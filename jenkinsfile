@@ -5,7 +5,10 @@ pipeline {
     dockerImage = ''
   }
   agent any
-  stages{
+   stages{
+     stage('Cloning Git') {
+         git branch: 'master',url: 'https://github.com/Akanshagiriya/Shopping_Cart.git'
+      }
     stage ('Build Install dependencies') {
       steps{
         echo "Modules installed"
