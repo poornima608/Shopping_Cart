@@ -1,7 +1,7 @@
 node() {
     environment {
-    registry = "akanshagiriya/shopping-cart"
-    registryCredential = 'docker_hub_akanshagiriya'
+    registry = "poornii/shopping-cart"
+    registryCredential = 'dockerhub'
     dockerImage = ''
   }
     stage ('Build Install dependencies') {
@@ -38,7 +38,7 @@ node() {
     stage ('Deploy to Dev') {
         echo "Deploying to Dev Environment"
          sh "docker rm -f shoppingcart || true"
-         sh "docker run -d --name=shoppingcart -p 8081:8080 akanshagiriya/shopping-cart"
+         sh "docker run -d --name=shoppingcart -p 8081:8080 poornii/shopping-cart"
       }
     }
   
