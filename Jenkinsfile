@@ -7,15 +7,16 @@ node() {
     stage ('Build Install dependencies') {
         nodejs('nodejs'){
         echo "Modules installed"
-       // sh "npm install"
-          sh 'npm install'
+        sh "npm install"
+         // sh 'npm install'
          sh 'npm run build'
       }
     }
     stage ('Build completed') {
         nodejs('nodejs'){
         echo "Build completed"
-        sh "npm run ng -- build --prod"
+       // sh "npm run ng -- build --prod"
+          sh 'npm run build'
       }
     }
     stage ('Build Docker Image') {
